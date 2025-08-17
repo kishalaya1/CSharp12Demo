@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CSharp12Demo;
+using System.Collections.Generic;
+using Box = (int length, int breadth, int height);
 
 Console.WriteLine("Hello, World!");
 
@@ -8,11 +10,13 @@ PrintMovieDescription();
 PrintMovieServiceDemo();
 PrintCollectionsExpressionsDemo();
 PrintInlineArrayDemo();
+PrintOptionalLambdaExpressionDemo();
+PrintAliasTupleDemo();
 static void PrintMovieDescription()
 {
     var movieExample = new Movie("Inception", new DateTime(2014, 11, 17), 9, "Christopher Nolan");
     Console.WriteLine(movieExample.GetDescription());
-    
+
 }
 static void PrintMovieServiceDemo()
 {
@@ -26,9 +30,10 @@ static void PrintMovieServiceDemo()
     // Move the InlineArray attribute and struct definition outside of the PrintInlineArrayDemo method.
     // Remove the struct definition from inside the method.
 }
-  
 
-static void PrintCollectionsExpressionsDemo() {
+
+static void PrintCollectionsExpressionsDemo()
+{
 
     // Create an array:
     int[] arrOne = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -126,8 +131,9 @@ static void PrintCollectionsExpressionsDemo() {
     // 0, 1, 1,2, 3, 5,8, 13, 21,34, 55, 89
 }
 
-static void PrintInlineArrayDemo() {
-   var inlineArr = new InlineArrayExample();
+static void PrintInlineArrayDemo()
+{
+    var inlineArr = new InlineArrayExample();
 
     for (int i = 0; i < 15; i++)
     {
@@ -140,7 +146,34 @@ static void PrintInlineArrayDemo() {
     }
 }
 
+static void PrintOptionalLambdaExpressionDemo()
+{
+    //lambda exprression with single default parameter
+    var defaultLambdaDemo = (int paramOne, int paramTwo = 1) => paramOne + paramTwo;
+
+    Console.WriteLine(defaultLambdaDemo(18));
+    Console.WriteLine(defaultLambdaDemo(18, 3));
+    //lambda expression with multiple default parameter
+    var defaultLambdaDemoAlt = (string paramOne, string paramTwo = "James",
+        string paramThree = "Moriarty") => paramOne + " " +
+        paramTwo + " " + paramThree;
+
+    Console.WriteLine(defaultLambdaDemoAlt("Prof"));
+    Console.WriteLine(defaultLambdaDemoAlt("Prof", "James"));
+    Console.WriteLine(defaultLambdaDemoAlt("Sir", "Leigh", "Teabing"));
+}
+
+static void PrintAliasTupleDemo()
+{
+    // Alias a tuple type for container dimensions
+     Box smallCargoContainer = (20, 4, 6);
+    Console.WriteLine("Alias type: using Container = (int length, int breadth, int height);");
+    Console.WriteLine($"Container Dimensions -> Length: {smallCargoContainer.length}, Breadth: {smallCargoContainer.breadth}, Height: {smallCargoContainer.height}");
+}
+
 Console.ReadKey();
+
+
 
 
 

@@ -2,6 +2,7 @@
 using CSharp12Demo;
 using System.Collections.Generic;
 using Box = (int length, int breadth, int height);
+using FeatureFilms = System.Collections.Generic.List<CSharp12Demo.FavMovie>;
 
 Console.WriteLine("Hello, World!");
 
@@ -166,9 +167,74 @@ static void PrintOptionalLambdaExpressionDemo()
 static void PrintAliasTupleDemo()
 {
     // Alias a tuple type for container dimensions
-     Box smallCargoContainer = (20, 4, 6);
+    Box smallCargoContainer = (20, 4, 6);
     Console.WriteLine("Alias type: using Container = (int length, int breadth, int height);");
     Console.WriteLine($"Container Dimensions -> Length: {smallCargoContainer.length}, Breadth: {smallCargoContainer.breadth}, Height: {smallCargoContainer.height}");
+}
+static void PrintAliasGenericListDemo()
+{
+    // Alias a tuple type for container dimensions
+    FeatureFilms GetGoodMovies()
+    {
+        List<CSharp12Demo.FavMovie> movies = new List<CSharp12Demo.FavMovie>
+        {
+            new CSharp12Demo.FavMovie
+            {
+            Name = "American History X",
+            ReleaseDate = new DateTime(1998, 10, 30),
+            Ratings = 8,
+            Director = "Tony Kaye"
+            },
+            new CSharp12Demo.FavMovie
+            {
+                Name = "The Shawshank Redemption",
+                ReleaseDate = new DateTime(1994, 9, 23),
+                Ratings = 10,
+                Director = "Frank Darabont"
+            },
+            new CSharp12Demo.FavMovie
+            {
+                Name = "The Godfather",
+                ReleaseDate = new DateTime(1972, 3, 24),
+                Ratings = 10,
+                Director = "Francis Ford Coppola"
+            },
+            new CSharp12Demo.FavMovie
+            {
+                Name = "The Dark Knight",
+                ReleaseDate = new DateTime(2008, 7, 18),
+                Ratings = 9,
+                Director = "Christopher Nolan"
+            },
+            new CSharp12Demo.FavMovie
+            {
+                Name = "Hazaaron Khwaishein Aisi",
+                ReleaseDate = new DateTime(2005, 4, 15),
+                Ratings = 10,
+                Director = "Sudhir Mishra"
+            },
+              new CSharp12Demo.FavMovie
+            {
+                Name = "Yeh Jawaani Hai Deewani",
+                ReleaseDate = new DateTime(2013, 5, 31),
+                Ratings = 7,
+                Director = "Ayan Mukherjee"
+            },
+    };
+        return movies;
+    }
+    Console.WriteLine("Alias type: Generic list demo");
+    Console.WriteLine("Details of the Favourite movies are as follows: " + Environment.NewLine);
+
+    //displaying the list of movies from FeatureFilms alias
+    GetGoodMovies().ForEach(movie =>
+    Console.WriteLine(nameof(movie.Name) + ": " + movie.Name + " "
+    + nameof(movie.Director) + ": " + movie.Director + " "
+    + nameof(movie.ReleaseDate) + ": " + movie.ReleaseDate.ToString("dd-MMMM-yyyy") + " "
+    + nameof(movie.Ratings) + ": " + movie.Ratings + " "
+    + Environment.NewLine)
+    );
+   
 }
 
 Console.ReadKey();

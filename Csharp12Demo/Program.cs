@@ -12,7 +12,8 @@ PrintMovieServiceDemo();
 PrintCollectionsExpressionsDemo();
 PrintInlineArrayDemo();
 PrintOptionalLambdaExpressionDemo();
-PrintAliasTupleDemo();
+PrintAliasTupleDemo(); 
+PrintAliasGenericListDemo();
 static void PrintMovieDescription()
 {
     var movieExample = new Movie("Inception", new DateTime(2014, 11, 17), 9, "Christopher Nolan");
